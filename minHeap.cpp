@@ -91,7 +91,7 @@ void resizeHeap(heap *h){
 }
 
 void insert(heap *h, int data){
-  cout<<"inserting "<<data<<endl;
+  // cout<<"inserting "<<data<<endl;
   int i;
   if(h->count == h->capacity){
     resizeHeap(h);
@@ -105,21 +105,48 @@ void insert(heap *h, int data){
   h->arr[i] = data;
 }
 
-int main(){
-  cout<<"starting"<<endl;
-  heap *h = createHeap(20);
-  insert(h, 10);
-  insert(h, 35);
-  insert(h, 3);
-  insert(h, 5);
-  insert(h, 9);
-  insert(h, 90);
-  insert(h, 20);
-  cout<<"lets delete"<<endl;
-  while(!isEmpty(h)){
+void deleteHeap(heap *h){
+  delete[] h->arr;
+  delete h;
+  h = NULL;
 
-    cout<<deleteMin(h)<<endl;
+}
+
+int main(){
+  int t, n, k, temp;
+  cin>>t;
+  for(int l=0;l<t;l++){
+    cin>>n;
+    heap *h = createHeap(n+1);
+    for(int i=0;i<n;i++){
+      cin>>temp;
+      insert(h, temp);
+    }
+    cin>>k;
+    while(k!=0){
+      cout<<"k "<<k<<endl;
+      temp = deleteMin(h);
+      cout<<"temp "<<temp<<endl;
+      k--;
+    }
+    // temp = deleteMin(h);
+    cout<<temp<<endl;
+    deleteHeap(h);
   }
-  cout<<"ho gya"<<endl;
+  // cout<<"starting"<<endl;
+  // heap *h = createHeap(20);
+  // insert(h, 10);
+  // insert(h, 35);
+  // insert(h, 3);
+  // insert(h, 5);
+  // insert(h, 9);
+  // insert(h, 90);
+  // insert(h, 20);
+  // cout<<"lets delete"<<endl;
+  // while(!isEmpty(h)){
+  //
+  //   cout<<deleteMin(h)<<endl;
+  // }
+  // cout<<"ho gya"<<endl;
   return 0;
 }
