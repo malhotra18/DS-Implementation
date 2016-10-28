@@ -91,13 +91,14 @@ void resizeHeap(heap *h){
 }
 
 void insert(heap *h, int data){
+  cout<<"inserting "<<data<<endl;
   int i;
-  if(h->count ==h->capacity){
+  if(h->count == h->capacity){
     resizeHeap(h);
   }
   h->count++;
   i = h->count-1;
-  while(i>=0 && data<h->arr[(i-1)/2]){
+  while(i>0 && data < h->arr[(i-1)/2]){
     h->arr[i] = h->arr[(i-1)/2];
     i = (i-1)/2;
   }
@@ -106,5 +107,19 @@ void insert(heap *h, int data){
 
 int main(){
   cout<<"starting"<<endl;
+  heap *h = createHeap(20);
+  insert(h, 10);
+  insert(h, 35);
+  insert(h, 3);
+  insert(h, 5);
+  insert(h, 9);
+  insert(h, 90);
+  insert(h, 20);
+  cout<<"lets delete"<<endl;
+  while(!isEmpty(h)){
+
+    cout<<deleteMin(h)<<endl;
+  }
+  cout<<"ho gya"<<endl;
   return 0;
 }
